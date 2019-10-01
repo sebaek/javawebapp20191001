@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-로그인이 성공했습니다.
+로그인이 성공했습니다. ${idattr }
 <br>
 web-inf
 </body>

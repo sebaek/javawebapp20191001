@@ -36,6 +36,8 @@ public class LoginServlet extends HttpServlet {
 			path = "/WEB-INF/loginFail.jsp";
 		}
 		
+		request.setAttribute("idattr", id);
+		
 		RequestDispatcher view = request.getRequestDispatcher(path);
 		view.forward(request, response);
 	}
