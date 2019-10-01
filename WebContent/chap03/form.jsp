@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+String contextpath = request.getContextPath();
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +10,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="/mywebapp/chap03/viewParameter.jsp" method="post">
+<form action="<%=contextpath %>/chap03/viewParameter.jsp" method="get">
 	이름: <input type="text" name="name"><br>
 	주소: <input type="text" name="address"><br>
 	좋아하는 동물:
