@@ -10,9 +10,9 @@
 </head>
 <body>
 	<%
-		Enumeration headerEnum = request.getHeaderNames();
+		Enumeration<String> headerEnum = request.getHeaderNames();
 		while (headerEnum.hasMoreElements()) {
-			String headerName = (String) headerEnum.nextElement();
+			String headerName = headerEnum.nextElement();
 			String headerValue = request.getHeader(headerName);
 
 			out.print(headerName);
