@@ -14,11 +14,11 @@
 		while (headerEnum.hasMoreElements()) {
 			String headerName = (String) headerEnum.nextElement();
 			String headerValue = request.getHeader(headerName);
-	%>
-	<%=headerName%>
-	=
-	<%=headerValue%><br>
-	<%
+
+			out.print(headerName);
+			out.print("=");
+			out.print(headerValue + "<br>");
+
 		}
 	%>
 
