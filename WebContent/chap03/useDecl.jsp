@@ -26,6 +26,18 @@ public int multiply(int a, int b) {
 <title>Insert title here</title>
 </head>
 <body>
+<%
+// 스크립트릿
+
+out.println(new java.util.Date());
+out.println(request.getMethod());
+
+//스크립트릿
+
+
+%>
+
+
 10 * 25 = <%= multiply(10, 25) %>
 <br>
 k 는 <%= this.k %>
