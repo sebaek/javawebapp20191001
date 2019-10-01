@@ -7,6 +7,12 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<!-- html주석 우리집 비밀번호 3939 -->
+
+	<%-- jsp 주석 옆집 비밀번호 9393 --%>
+	
+<!-- 	주석 단축키 ctrl+shift+c -->
+
 	<%
 		int sum = 0;
 	%>
