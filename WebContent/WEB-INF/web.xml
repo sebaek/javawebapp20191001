@@ -2,18 +2,15 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" version="4.0">
   <display-name>mywebapp</display-name>
   <context-param>
-  	<description>로깅 여부</description>
-  	<param-name>logEnabled</param-name>
-  	<param-value>false</param-value>
+    <description>로깅 여부</description>
+    <param-name>logEnabled</param-name>
+    <param-value>false</param-value>
   </context-param>
-  
   <context-param>
-  	<description>디버깅레벨</description>
-  	<param-name>debugLevel</param-name>
-  	<param-value>5</param-value>
+    <description>디버깅레벨</description>
+    <param-name>debugLevel</param-name>
+    <param-value>5</param-value>
   </context-param>
-  
-  
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>

@@ -15,7 +15,7 @@ String value2 = application.getInitParameter("debugLevel");
 
 %>
 
-<%= value1.getBytes() %><br>
+<%= value1 %><br>
 <%= value2 %>
 </body>
 </html>
