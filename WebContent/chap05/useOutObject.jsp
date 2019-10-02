@@ -9,7 +9,11 @@
 <body>
 	<%
 		int grade = 11;
+	%>
+	<%
 		String gradeStringA = "A학점";
+	%>
+	<%
 		String gradeStringB = "B학점";
 	%>
 	<%
