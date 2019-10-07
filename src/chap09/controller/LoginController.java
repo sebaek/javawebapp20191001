@@ -54,7 +54,9 @@ public class LoginController extends HttpServlet {
 			if (user.getId().equals(id)) {
 				if (user.getPassword().equals(pw)) {
 					session.setAttribute("user", user);
-					viewPath = "/WEB-INF/main.jsp";
+					response.sendRedirect(request.getContextPath() + "/");
+					return;
+//					viewPath = "/WEB-INF/main.jsp";
 				}
 			}
 		}
