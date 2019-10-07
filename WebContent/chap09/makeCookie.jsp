@@ -3,6 +3,7 @@
 <%@ page import="java.net.*" %>
 <%
 Cookie cookie = new Cookie("name", "최범균");
+cookie.setMaxAge(60*60);
 response.addCookie(cookie);
 
 %>
