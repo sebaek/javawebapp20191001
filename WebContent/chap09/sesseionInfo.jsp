@@ -1,16 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.*, java.text.*" %>
-
+<%-- <%@ page session="false" %> --%>
 <%
 Date time = new Date();
 SimpleDateFormat formatter = 
 new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-session.setMaxInactiveInterval(60*60);
+session.setMaxInactiveInterval(10);
+session = request.getSession();
+//session.invalidate();
 
 Cookie c = new Cookie("JSESSIONID", session.getId());
 c.setMaxAge(60*60);
 response.addCookie(c);
+
 %>
 <!DOCTYPE html>
 <html>
@@ -19,6 +22,7 @@ response.addCookie(c);
 <title>세션정보</title>
 </head>
 <body>
+
 id: <%= session.getId() %><br>
 <% time.setTime(session.getCreationTime()); %>
 생성: <%= formatter.format(time) %><br>
