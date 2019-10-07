@@ -19,6 +19,14 @@ pw: <input type="password" name="password"><br>
 <input type="submit" value="로그인">
 </form>
 
+<% 
+String error = (String) request.getAttribute("loginFailed");
+if (error != null) {
+	out.print(error);
+}
+
+%>
+
 </body>
 </html>
 

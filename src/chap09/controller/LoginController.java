@@ -62,6 +62,7 @@ public class LoginController extends HttpServlet {
 		}
 		
 		if (viewPath.isEmpty()) {
+			request.setAttribute("loginFailed", "사용자 정보가 없습니다.");
 			viewPath = "/WEB-INF/login.jsp";
 		}
 		
