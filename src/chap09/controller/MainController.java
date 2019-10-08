@@ -42,7 +42,7 @@ public class MainController extends HttpServlet {
 		User user2 = new User();
 		user2.setId("seoul");
 		user2.setPassword("xmrquftl");
-		user2.setNickName("시청");
+		user2.setNickName("<script>document.body.style.backgroundColor = 'black';</script>");
 		
 		List<User> users = new ArrayList<User>();
 		users.add(user);

@@ -16,7 +16,12 @@
 		list.add("python");
 		list.add("react");
 		pageContext.setAttribute("mylist", list);
+		pageContext.setAttribute("notTag", "<b>안 굵게</b>");
 	%>
+	<h3>core out</h3>
+	${notTag }<br>
+	<c:out value="${notTag }" />
+	
 	<h3>core forEach</h3>
 	<ul>
 		<c:forEach items="${mylist}" var="item">

@@ -27,8 +27,8 @@ table {
 		<c:forEach items="${users }" var="user">
 			<tr>
 				<td>${user.id }</td>
-				<td>${user.nickName }</td>
-				<td>${user.password }</td>
+				<td><c:out value="${user.nickName }" /></td>
+				<td><c:out value="${user.password }" /></td>
 			</tr>
 		</c:forEach>
 
