@@ -2,9 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ page import="chap09.bean.*" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%
-	String contextPath = request.getContextPath();
-%>
+
+<c:url value="/login" var="loginUrl" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,7 +41,7 @@ if (user == null) {
 
 %>
 <%-- <a href="${pageContext.request.contextPath }/login">로그인</a> --%>
-<a href="<c:url value="/login" />">로그인</a>
+<a href="${loginUrl }">로그인</a>
 
 <%
 } else {
