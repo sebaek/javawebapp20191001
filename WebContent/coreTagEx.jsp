@@ -8,8 +8,11 @@
 <title>Insert title here</title>
 </head>
 <body>
+<h3>core url</h3>
+<c:url value="/login" />
 
-<h1>core if</h1>
+
+<h3>core if</h3>
 <c:if test="${ 2 > 3 }">
 <p> 2는 3보다 크다.</p>
 </c:if>
