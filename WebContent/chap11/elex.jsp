@@ -13,6 +13,7 @@ user2.setPassword("el");
 user2.setNickName("languge");
 
 request.setAttribute("user1", user);
+session.setAttribute("user1", user2);
 session.setAttribute("user2", user2);
 
 
@@ -57,6 +58,16 @@ ${requestScope.user1["id"] }<br>
 
 ${sessionScope["user2"]["nickName"] }<br>
 ${sessionScope.user2["nickName"] }<br>
+
+
+${user1.nickName }<br>
+${user2.nickName }<br>
+
+<p>얜 안됨</p>
+${requestScope.contextPath }<br>
+<p>얜 됨</p>
+${pageContext.request.contextPath }<br>
+
 <br>
 <br>
 <br>

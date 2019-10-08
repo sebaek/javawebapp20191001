@@ -19,6 +19,9 @@ pw: <input type="password" name="password"><br>
 <input type="submit" value="로그인">
 </form>
 
+${loginFailed }
+<%--
+
 <% 
 String error = (String) request.getAttribute("loginFailed");
 if (error != null) {
@@ -26,6 +29,7 @@ if (error != null) {
 }
 
 %>
+ --%>
 
 </body>
 </html>
