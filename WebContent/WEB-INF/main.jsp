@@ -46,6 +46,8 @@ if (user == null) {
 } else {
 %>
 <p>반갑습니다. ${user.nickName } 님 </p>
+<a href="${pageContext.request.contextPath }/userinfo.jsp">사용자</a>
+<br>
 <a href="${pageContext.request.contextPath }/logout">로그아웃</a>
 
 <%

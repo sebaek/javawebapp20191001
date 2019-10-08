@@ -26,8 +26,8 @@ session.setAttribute("user2", user2);
 </head>
 <body>
 <h3>기본 문법</h3>
-&amp;{firstValue.secondValue }<br>
-&amp;{firstValue[secondValue] }<br>
+&dollor;{firstValue.secondValue }<br>
+&dollor;{firstValue[secondValue] }<br>
 
 firstValue는 11개의 기본객체 또는 Java Bean <br>
 .secondValue는 map의 key 또는 bean의 프로퍼티 <br>
@@ -67,6 +67,43 @@ ${user2.nickName }<br>
 ${requestScope.contextPath }<br>
 <p>얜 됨</p>
 ${pageContext.request.contextPath }<br>
+
+<p>간단한 연산</p>
+${ 1 + 1 }<br>
+${ 2 - 3 }<br>
+${ 2 * 3 }<br>
+${ 2 / 3 }<br>
+${ 2 div 3 }<br>
+${ 9 % 2 }<br>
+${ 9 mod 2 }<br>
+<br>
+${ 3 == 3 }<br>
+${ 3 eq 3 }<br>
+${ 3 != 3 }<br>
+${ 3 ne 3 }<br>
+${ 3 > 3 }<br>
+${ 3 gt 3 }<br>
+${ 3 < 3 }<br>
+${ 3 lt 3 }<br>
+${ 3 >= 3 }<br>
+${ 3 ge 3 }<br>
+${ 3 <= 3 }<br>
+${ 3 le 3 }<br>
+<br>
+${ 3 == 3 && 2 == 2 }<br>
+${ 3 == 3 and 2 == 2 }<br>
+${ 3 == 3 || 2 == 2 }<br>
+${ 3 == 3 or 2 == 2 }<br>
+${ !(2 == 2) }<br>
+${ not (2 == 2) }<br>
+<br>
+${empty "" }<br>
+${not empty "" }<br>
+${! empty "" }<br>
+
+
+
+
 
 <br>
 <br>
