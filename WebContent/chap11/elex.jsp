@@ -26,8 +26,8 @@ session.setAttribute("user2", user2);
 </head>
 <body>
 <h3>기본 문법</h3>
-&dollor;{firstValue.secondValue }<br>
-&dollor;{firstValue[secondValue] }<br>
+&dollar;{firstValue.secondValue }<br>
+&dollar;{firstValue[secondValue] }<br>
 
 firstValue는 11개의 기본객체 또는 Java Bean <br>
 .secondValue는 map의 key 또는 bean의 프로퍼티 <br>
