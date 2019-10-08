@@ -25,11 +25,15 @@ session.setAttribute("user2", user2);
 </head>
 <body>
 <h3>기본 문법</h3>
-${firstValue.secondValue }<br>
+&amp;{firstValue.secondValue }<br>
+&amp;{firstValue[secondValue] }<br>
 
 firstValue는 11개의 기본객체 또는 Java Bean <br>
-secondValue는 map의 key 또는 bean의 프로퍼티 <br>
+.secondValue는 map의 key 또는 bean의 프로퍼티 <br>
 .secondValue 작성 규칙은 java naming 규칙 따름<br>
+<br>
+[secondValue] map의 key 또는 bean의 프로퍼티<br>
+ 또는 List의 index 또는 배열의 index<br>
 [secondValue] java naming 규칙 따르지 않아도 됨<br>
 
 
