@@ -34,21 +34,6 @@ public class MainController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ServletContext application = request.getServletContext();
-		User user = new User();
-		user.setId("jeju");
-		user.setPassword("tkaektn");
-		user.setNickName("프로도");
-		
-		User user2 = new User();
-		user2.setId("seoul");
-		user2.setPassword("xmrquftl");
-		user2.setNickName("시청");
-		
-		List<User> users = new ArrayList<User>();
-		users.add(user);
-		users.add(user2);
-		
-		application.setAttribute("users", users);
 		
 		RequestDispatcher view = request
 				.getRequestDispatcher("/WEB-INF/main.jsp");
