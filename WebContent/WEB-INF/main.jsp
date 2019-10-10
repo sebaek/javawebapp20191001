@@ -14,6 +14,7 @@
 	<c:choose>
 		<c:when test="${empty user }">
 			<a href="${loginUrl }">로그인</a>
+			<a href="<c:url value="/signup" />">회원가입</a>
 		</c:when>
 		<c:otherwise>
 			<p>반갑습니다. ${user.nickName } 님</p>
