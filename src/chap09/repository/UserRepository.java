@@ -11,7 +11,7 @@ public class UserRepository {
 
 	public User getUser(String id, String pw) {
 		String url = "jdbc:mysql://localhost/w3schools?"
-				+ "user=root&password=admin&&serverTimezone=UTC";
+				+ "user=root&password=admin&serverTimezone=UTC";
 		String sql = "SELECT id, password, nickname "
 				+ "FROM USERS "
 				+ "WHERE id='" + id + "' "
