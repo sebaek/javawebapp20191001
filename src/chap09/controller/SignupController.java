@@ -1,10 +1,8 @@
 package chap09.controller;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import chap09.bean.User;
+import chap09.repository.UserRepository;
 
 /**
  * Servlet implementation class SignupController
@@ -46,16 +45,22 @@ public class SignupController extends HttpServlet {
 		user.setPassword(request.getParameter("password"));
 		user.setNickName(request.getParameter("nick-name"));
 		
-		ServletContext application = getServletContext();
-		List<User> users = (List<User>) application.getAttribute("users");
-		users.add(user);
+		UserRepository repo = new UserRepository();
+		if (repo.addUser(user)) {
+			response.sendRedirect(request.getContextPath() + "/");
+			System.out.println("사용자 등록 요청함");
+		} else {
+			request.setAttribute("error", "사용자 등록에 실패하였습니다.");
+			request
+			.getRequestDispatcher("/WEB-INF/signup.jsp")
+			.forward(request, response);
+		}
 		
-		response.sendRedirect(request.getContextPath() + "/");
-		
-		System.out.println("사용자 등록 요청함");
 	}
 
 }
+
+
 
 
 

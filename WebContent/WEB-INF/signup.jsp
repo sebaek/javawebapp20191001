@@ -33,6 +33,7 @@ pw confirm : <input id="pw-confirm" type="password" ><span id="message"></span><
 nick : <input type="text" name="nick-name"><br>
 <input type="submit" value="가입">
 </form>
+${error }
 
 </body>
 </html>

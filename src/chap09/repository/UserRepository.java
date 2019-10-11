@@ -54,5 +54,42 @@ public class UserRepository {
 		
 		return null;
 	}
+
+	public boolean addUser(User user) {
+		String url = "jdbc:mysql://localhost/w3schools?"
+				+ "user=root&password=admin&serverTimezone=UTC";
+		String sql = "INSERT INTO users (id, password, nickname) "
+				+ "VALUES ("
+				+ "'" + user.getId() + "', "
+				+ "'" + user.getPassword() + "', "
+				+ "'" + user.getNickName() + "')";
+		
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		try (Connection con = DriverManager.getConnection(url);
+				Statement stmt = con.createStatement();
+				
+				
+				) {
+			int count = stmt.executeUpdate(sql);
+			
+			if (count == 1) {
+				return true;
+			} else {
+				return false;
+			}
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		
+		return false;
+	}
 	
 }
