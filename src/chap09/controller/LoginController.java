@@ -1,7 +1,6 @@
 package chap09.controller;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -13,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import chap09.bean.User;
+import chap09.repository.UserRepository;
 
 /**
  * Servlet implementation class LoginController
@@ -20,63 +20,52 @@ import chap09.bean.User;
 @WebServlet("/login")
 public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public LoginController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher view = request
-				.getRequestDispatcher("/WEB-INF/login.jsp");
+	public LoginController() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/login.jsp");
 		view.forward(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		ServletContext application = request.getServletContext();
 		HttpSession session = request.getSession();
-		String viewPath = "";
-		List<User> users = (List<User>) application.getAttribute("users");
+		
 		String id = request.getParameter("id");
 		String pw = request.getParameter("password");
+		UserRepository repo = new UserRepository();
+		User user = repo.getUser(id, pw);
 		
-		for (User user : users) {
-			if (user.getId().equals(id)) {
-				if (user.getPassword().equals(pw)) {
-					session.setAttribute("user", user);
-					response.sendRedirect(request.getContextPath() + "/");
-					return;
-//					viewPath = "/WEB-INF/main.jsp";
-				}
-			}
-		}
-		
-		if (viewPath.isEmpty()) {
+		if (user != null) {
+			session.setAttribute("user", user);
+			response.sendRedirect(request.getContextPath() + "/");
+			return;
+		} else {
 			request.setAttribute("loginFailed", "사용자 정보가 없습니다.");
-			viewPath = "/WEB-INF/login.jsp";
+			String viewPath = "/WEB-INF/login.jsp";
+			RequestDispatcher view = request.getRequestDispatcher(viewPath);
+			view.forward(request, response);
 		}
-		
-		RequestDispatcher view = request.getRequestDispatcher(viewPath);
-		view.forward(request, response);
+
 
 	}
 
 }
-
-
-
-
-
-
-
-

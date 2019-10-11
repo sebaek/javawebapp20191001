@@ -35,22 +35,7 @@ public class AppListener implements ServletContextListener {
 	 * @see ServletContextListener#contextInitialized(ServletContextEvent)
 	 */
 	public void contextInitialized(ServletContextEvent sce) {
-		ServletContext application = sce.getServletContext();
-		User user = new User();
-		user.setId("jeju");
-		user.setPassword("tkaektn");
-		user.setNickName("프로도");
-
-		User user2 = new User();
-		user2.setId("seoul");
-		user2.setPassword("xmrquftl");
-		user2.setNickName("시청");
-
-		List<User> users = new ArrayList<User>();
-		users.add(user);
-		users.add(user2);
-
-		application.setAttribute("users", users);
+		
 	}
 
 }
