@@ -123,5 +123,44 @@ public class UserRepository {
 		
 		return false;
 	}
+
+	public boolean updateUser(User origin, User target) {
+		String url = "jdbc:mysql://localhost/w3schools?"
+				+ "user=root&password=admin&serverTimezone=UTC";
+		String sql = "UPDATE users "
+				+ "SET "
+				+ "id='" + target.getId() + "', "
+				+ "password='" + target.getPassword() + "', "
+				+ "nickname='" + target.getNickName() + "' "
+				+ "WHERE id='" + origin.getId() + "' AND "
+				+ "password='" + origin.getPassword() + "'";
+		
+		System.out.println(sql);
+		
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		try (Connection con = DriverManager.getConnection(url);
+				Statement stmt = con.createStatement();
+				) {
+			int count = stmt.executeUpdate(sql);
+			
+			if (count == 1) {
+				return true;
+			} else {
+				return false;
+			}
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		
+		return false;
+	}
 	
 }
