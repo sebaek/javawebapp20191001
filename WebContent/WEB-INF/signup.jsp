@@ -27,10 +27,10 @@ $(document).ready(function() {
 <body>
 <h1>회원 가입</h1>
 <form action="<c:url value="/signup" />" method="post">
-id : <input type="text" name="id"><br>
-pw : <input id="pw" type="password" name="password"><br>
-pw confirm : <input id="pw-confirm" type="password" ><span id="message"></span><br>
-nick : <input type="text" name="nick-name"><br>
+id : <input type="text" name="id" value="${user.id }"><br>
+pw : <input id="pw" type="password" name="password" value="${user.password }"><br>
+pw confirm : <input id="pw-confirm" type="password" value="${user.password}"><span id="message"></span><br>
+nick : <input type="text" name="nick-name" value="${user.nickName }"><br>
 <input type="submit" value="가입">
 </form>
 ${error }

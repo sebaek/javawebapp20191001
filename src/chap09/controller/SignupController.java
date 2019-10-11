@@ -50,6 +50,7 @@ public class SignupController extends HttpServlet {
 			response.sendRedirect(request.getContextPath() + "/");
 			System.out.println("사용자 등록 요청함");
 		} else {
+			request.setAttribute("user", user);
 			request.setAttribute("error", "사용자 등록에 실패하였습니다.");
 			request
 			.getRequestDispatcher("/WEB-INF/signup.jsp")

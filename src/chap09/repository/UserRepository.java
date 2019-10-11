@@ -73,8 +73,6 @@ public class UserRepository {
 		
 		try (Connection con = DriverManager.getConnection(url);
 				Statement stmt = con.createStatement();
-				
-				
 				) {
 			int count = stmt.executeUpdate(sql);
 			
