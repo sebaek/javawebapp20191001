@@ -89,5 +89,39 @@ public class UserRepository {
 		
 		return false;
 	}
+
+	public boolean removeUser(User user) {
+		String url = "jdbc:mysql://localhost/w3schools?"
+				+ "user=root&password=admin&serverTimezone=UTC";
+		String sql = "DELETE FROM users "
+				+ "WHERE "
+				+ "id='" + user.getId() + "' AND "
+				+ "password='" + user.getPassword() + "'";
+		System.out.println(sql);
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		try (Connection con = DriverManager.getConnection(url);
+				Statement stmt = con.createStatement();
+				) {
+			int count = stmt.executeUpdate(sql);
+			
+			if (count == 1) {
+				return true;
+			} else {
+				return false;
+			}
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		
+		return false;
+	}
 	
 }

@@ -38,6 +38,11 @@ table {
 	<p>id : ${user.id }</p>
 	<p>nick name : ${user.nickName }</p>
 	<p>password : ${user.password }</p>
+	<br>	
+	<a href="<c:url value="/delete" />">회원 탈퇴</a>
 
 </body>
 </html>
+
+
+
