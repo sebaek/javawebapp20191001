@@ -32,7 +32,32 @@
   -- 파라미터없는 생성자가 있다.
   -- get, set 메소드로 데이터를 얻거나 세팅할 수 있다.
 
-
+-- JDBC 사용법
+  - 클래스 로딩
+  -- Class.forName("database class (검색)");
+  
+  - DriverManager에서 Connection 객체 얻기
+  -- DriverManager.getConnection(url);
+  
+  - Connection에서 Statement 객체 얻기
+  -- connection.createStatement();
+  
+  - SQL 실행
+  -- statement.executeQuery(sql);
+  
+  - 실행 결과 처리
+  -- ResultSet 또는 int를 활용해서 처리
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
   
   
