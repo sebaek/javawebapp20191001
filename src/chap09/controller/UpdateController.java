@@ -50,6 +50,8 @@ public class UpdateController extends HttpServlet {
 		target.setEmail(request.getParameter("email"));
 		
 		UserRepository repo = new UserRepository();
+		repo.setConnection(getServletContext()
+				.getAttribute("connection"));
 		if (repo.updateUser(origin, target)) {
 			session.setAttribute("user", target);
 			response

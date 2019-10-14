@@ -35,6 +35,8 @@ public class DeleteController extends HttpServlet {
 		User user = (User) session.getAttribute("user");
 		
 		UserRepository repo = new UserRepository();
+		repo.setConnection(getServletContext()
+				.getAttribute("connection"));
 		if (repo.removeUser(user)) {
 			session.invalidate();
 			response

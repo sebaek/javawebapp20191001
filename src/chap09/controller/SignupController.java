@@ -47,6 +47,8 @@ public class SignupController extends HttpServlet {
 		user.setEmail(request.getParameter("email"));
 		
 		UserRepository repo = new UserRepository();
+		repo.setConnection(getServletContext()
+				.getAttribute("connection"));
 		if (repo.addUser(user)) {
 			response.sendRedirect(request.getContextPath() + "/");
 			System.out.println("사용자 등록 요청함");

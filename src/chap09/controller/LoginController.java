@@ -52,6 +52,8 @@ public class LoginController extends HttpServlet {
 		String id = request.getParameter("id");
 		String pw = request.getParameter("password");
 		UserRepository repo = new UserRepository();
+		repo.setConnection(getServletContext()
+				.getAttribute("connection"));
 		User user = repo.getUser(id, pw);
 		
 		if (user != null) {

@@ -1,30 +1,30 @@
 package chap09.repository;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
 import chap09.bean.User;
 
 public class UserRepository {
+	private Connection con;
+	
+	public void setConnection(Connection con) {
+		this.con = con;
+	}
+	
+	public void setConnection(Object con) {
+		this.con = (Connection) con;
+	}
 
 	public User getUser(String id, String pw) {
-		String url = "jdbc:mysql://localhost/w3schools?"
-				+ "user=root&password=admin&serverTimezone=UTC";
+		
 		String sql = "SELECT id, password, nickname, email "
 				+ "FROM USERS "
 				+ "WHERE id='" + id + "' "
 				+ "AND password='" + pw + "'";
 		
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-		} catch (ClassNotFoundException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		
-		try (Connection con = DriverManager.getConnection(url);
+		try (
 				Statement stmt = con.createStatement();
 				ResultSet rs = stmt.executeQuery(sql);
 				
@@ -58,8 +58,7 @@ public class UserRepository {
 	}
 
 	public boolean addUser(User user) {
-		String url = "jdbc:mysql://localhost/w3schools?"
-				+ "user=root&password=admin&serverTimezone=UTC";
+		
 		String sql = "INSERT INTO users (id, password, nickname, email) "
 				+ "VALUES ("
 				+ "'" + user.getId() + "', "
@@ -67,14 +66,7 @@ public class UserRepository {
 				+ "'" + user.getNickName() + "', "
 				+ "'" + user.getEmail() + "') ";
 		
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-		} catch (ClassNotFoundException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		
-		try (Connection con = DriverManager.getConnection(url);
+		try (
 				Statement stmt = con.createStatement();
 				) {
 			int count = stmt.executeUpdate(sql);
@@ -94,21 +86,13 @@ public class UserRepository {
 	}
 
 	public boolean removeUser(User user) {
-		String url = "jdbc:mysql://localhost/w3schools?"
-				+ "user=root&password=admin&serverTimezone=UTC";
 		String sql = "DELETE FROM users "
 				+ "WHERE "
 				+ "id='" + user.getId() + "' AND "
 				+ "password='" + user.getPassword() + "'";
 		System.out.println(sql);
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-		} catch (ClassNotFoundException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
 		
-		try (Connection con = DriverManager.getConnection(url);
+		try (
 				Statement stmt = con.createStatement();
 				) {
 			int count = stmt.executeUpdate(sql);
@@ -128,8 +112,7 @@ public class UserRepository {
 	}
 
 	public boolean updateUser(User origin, User target) {
-		String url = "jdbc:mysql://localhost/w3schools?"
-				+ "user=root&password=admin&serverTimezone=UTC";
+		
 		String sql = "UPDATE users "
 				+ "SET "
 				+ "id='" + target.getId() + "', "
@@ -141,14 +124,7 @@ public class UserRepository {
 		
 		System.out.println(sql);
 		
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-		} catch (ClassNotFoundException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		
-		try (Connection con = DriverManager.getConnection(url);
+		try (
 				Statement stmt = con.createStatement();
 				) {
 			int count = stmt.executeUpdate(sql);
