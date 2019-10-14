@@ -21,9 +21,15 @@ table {
 	<table>
 	<tr><th>id</th><th>title</th><th>user</th><th>date</th></tr>
 	<c:forEach items="${items }" var="i">
+	
+	<c:url value="/item" var="itemUrl">
+		<%-- /mywebapp/item?id=234 --%>
+		<c:param name="id" value="${i.id }" />
+	</c:url>
+	
 	<tr>
 	<td>${i.id }</td>
-	<td>${i.title }</td>
+	<td><a href="${itemUrl }">${i.title }</a></td>
 	<td>${i.userId }</td>
 	<td>${i.created }</td>
 	</tr>
