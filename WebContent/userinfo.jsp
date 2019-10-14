@@ -57,6 +57,7 @@ $(document).ready(function() {
 	<p>id : ${user.id }</p>
 	<p>nick name : ${user.nickName }</p>
 	<p>password : ${user.password }</p>
+	<p>email : ${user.email }</p>
 	<br>	
 	<a href="<c:url value="/delete" />">회원 탈퇴</a>
 	
@@ -65,6 +66,7 @@ $(document).ready(function() {
 	pw-confim : <input id="pw-confirm" type="password" >
 	            <span id="message"></span><br>
 	nick name : <input type="text" name="nick-name"><br>
+	email : <input type="email" name="email"><br>
 	<input type="submit" value="정보 수정" >
 	</form>
 	${error }

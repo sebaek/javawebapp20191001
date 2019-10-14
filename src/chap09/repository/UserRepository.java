@@ -12,7 +12,7 @@ public class UserRepository {
 	public User getUser(String id, String pw) {
 		String url = "jdbc:mysql://localhost/w3schools?"
 				+ "user=root&password=admin&serverTimezone=UTC";
-		String sql = "SELECT id, password, nickname "
+		String sql = "SELECT id, password, nickname, email "
 				+ "FROM USERS "
 				+ "WHERE id='" + id + "' "
 				+ "AND password='" + pw + "'";
@@ -36,10 +36,12 @@ public class UserRepository {
 				String rsid = rs.getString(1);
 				String rspw = rs.getString(2);
 				String rsnick = rs.getString(3);
+				String rsemail = rs.getString(4);
 				
 				user.setId(rsid);
 				user.setPassword(rspw);
 				user.setNickName(rsnick);
+				user.setEmail(rsemail);
 				
 				return user;
 			} else {
@@ -58,11 +60,12 @@ public class UserRepository {
 	public boolean addUser(User user) {
 		String url = "jdbc:mysql://localhost/w3schools?"
 				+ "user=root&password=admin&serverTimezone=UTC";
-		String sql = "INSERT INTO users (id, password, nickname) "
+		String sql = "INSERT INTO users (id, password, nickname, email) "
 				+ "VALUES ("
 				+ "'" + user.getId() + "', "
 				+ "'" + user.getPassword() + "', "
-				+ "'" + user.getNickName() + "')";
+				+ "'" + user.getNickName() + "', "
+				+ "'" + user.getEmail() + "') ";
 		
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -131,7 +134,8 @@ public class UserRepository {
 				+ "SET "
 				+ "id='" + target.getId() + "', "
 				+ "password='" + target.getPassword() + "', "
-				+ "nickname='" + target.getNickName() + "' "
+				+ "nickname='" + target.getNickName() + "', "
+				+ "email='" + target.getEmail() + "' "
 				+ "WHERE id='" + origin.getId() + "' AND "
 				+ "password='" + origin.getPassword() + "'";
 		

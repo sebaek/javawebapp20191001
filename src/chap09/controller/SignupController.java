@@ -44,6 +44,7 @@ public class SignupController extends HttpServlet {
 		user.setId(request.getParameter("id"));
 		user.setPassword(request.getParameter("password"));
 		user.setNickName(request.getParameter("nick-name"));
+		user.setEmail(request.getParameter("email"));
 		
 		UserRepository repo = new UserRepository();
 		if (repo.addUser(user)) {

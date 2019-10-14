@@ -47,6 +47,7 @@ public class UpdateController extends HttpServlet {
 		target.setId(origin.getId());
 		target.setPassword(request.getParameter("password"));
 		target.setNickName(request.getParameter("nick-name"));
+		target.setEmail(request.getParameter("email"));
 		
 		UserRepository repo = new UserRepository();
 		if (repo.updateUser(origin, target)) {

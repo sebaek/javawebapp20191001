@@ -31,6 +31,7 @@ id : <input type="text" name="id" value="${user.id }"><br>
 pw : <input id="pw" type="password" name="password" value="${user.password }"><br>
 pw confirm : <input id="pw-confirm" type="password" value="${user.password}"><span id="message"></span><br>
 nick : <input type="text" name="nick-name" value="${user.nickName }"><br>
+email : <input type="email" name="email" value="${user.email }"><br>
 <input type="submit" value="가입">
 </form>
 ${error }
