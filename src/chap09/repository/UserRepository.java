@@ -1,8 +1,9 @@
 package chap09.repository;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.SQLException;
 
 import chap09.bean.User;
 
@@ -21,16 +22,19 @@ public class UserRepository {
 		
 		String sql = "SELECT id, password, nickname, email "
 				+ "FROM USERS "
-				+ "WHERE id='" + id + "' "
-				+ "AND password='" + pw + "'";
+				+ "WHERE id=? "
+				+ "AND password=?";
+		ResultSet rs = null;
 		
 		try (
-				Statement stmt = con.createStatement();
-				ResultSet rs = stmt.executeQuery(sql);
+				PreparedStatement stmt = con.prepareStatement(sql);
 				
 				
 				) {
+			stmt.setString(1, id);
+			stmt.setString(2, pw);
 			
+			rs = stmt.executeQuery();
 			if (rs.next()) {
 				User user = new User();
 				String rsid = rs.getString(1);
@@ -52,24 +56,43 @@ public class UserRepository {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} 
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
 		
 		return null;
 	}
 
 	public boolean addUser(User user) {
 		
+//		String sql = "INSERT INTO users (id, password, nickname, email) "
+//				+ "VALUES ("
+//				+ "'" + user.getId() + "', "
+//				+ "'" + user.getPassword() + "', "
+//				+ "'" + user.getNickName() + "', "
+//				+ "'" + user.getEmail() + "') ";
 		String sql = "INSERT INTO users (id, password, nickname, email) "
-				+ "VALUES ("
-				+ "'" + user.getId() + "', "
-				+ "'" + user.getPassword() + "', "
-				+ "'" + user.getNickName() + "', "
-				+ "'" + user.getEmail() + "') ";
+				+ "VALUES (?, ?, ?, ?)";
+		
+		System.out.println(sql);
 		
 		try (
-				Statement stmt = con.createStatement();
+//				Statement stmt = con.createStatement();
+				PreparedStatement stmt = con.prepareStatement(sql); 
 				) {
-			int count = stmt.executeUpdate(sql);
+			stmt.setString(1, user.getId());
+			stmt.setString(2, user.getPassword());
+			stmt.setString(3, user.getNickName());
+			stmt.setString(4, user.getEmail());
+			
+			int count = stmt.executeUpdate();
 			
 			if (count == 1) {
 				return true;
@@ -87,15 +110,16 @@ public class UserRepository {
 
 	public boolean removeUser(User user) {
 		String sql = "DELETE FROM users "
-				+ "WHERE "
-				+ "id='" + user.getId() + "' AND "
-				+ "password='" + user.getPassword() + "'";
+				+ "WHERE id=? AND password=? ";
 		System.out.println(sql);
 		
 		try (
-				Statement stmt = con.createStatement();
+				PreparedStatement stmt = con.prepareStatement(sql);
 				) {
-			int count = stmt.executeUpdate(sql);
+			stmt.setString(1, user.getId());
+			stmt.setString(2, user.getPassword());
+			
+			int count = stmt.executeUpdate();
 			
 			if (count == 1) {
 				return true;
@@ -115,19 +139,27 @@ public class UserRepository {
 		
 		String sql = "UPDATE users "
 				+ "SET "
-				+ "id='" + target.getId() + "', "
-				+ "password='" + target.getPassword() + "', "
-				+ "nickname='" + target.getNickName() + "', "
-				+ "email='" + target.getEmail() + "' "
-				+ "WHERE id='" + origin.getId() + "' AND "
-				+ "password='" + origin.getPassword() + "'";
+				+ "id=?, "
+				+ "password=?, "
+				+ "nickname=?, "
+				+ "email=? "
+				+ "WHERE id=? AND "
+				+ "password=?";
 		
 		System.out.println(sql);
 		
 		try (
-				Statement stmt = con.createStatement();
+				PreparedStatement stmt = con.prepareStatement(sql);
 				) {
-			int count = stmt.executeUpdate(sql);
+			stmt.setString(1, target.getId());
+			stmt.setString(2, target.getPassword());
+			stmt.setString(3, target.getNickName());
+			stmt.setString(4, target.getEmail());
+			
+			stmt.setString(5, origin.getId());
+			stmt.setString(6, origin.getPassword());
+			
+			int count = stmt.executeUpdate();
 			
 			if (count == 1) {
 				return true;
