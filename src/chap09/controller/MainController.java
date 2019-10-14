@@ -12,9 +12,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import chap09.bean.Item;
 import chap09.bean.User;
+import chap09.repository.ItemRepository;
 
-/**`
+/**
  * Servlet implementation class MainController
  */
 @WebServlet("/")
@@ -33,7 +35,12 @@ public class MainController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ServletContext application = request.getServletContext();
+		
+		ItemRepository repo = new ItemRepository();
+		repo.setConnection(getServletContext().getAttribute("connection"));
+		List<Item> items = repo.list();
+		
+		request.setAttribute("items", items);
 		
 		RequestDispatcher view = request
 				.getRequestDispatcher("/WEB-INF/main.jsp");

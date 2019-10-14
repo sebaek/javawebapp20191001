@@ -7,9 +7,28 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+table, th, td {
+	border: 1px solid black;
+}
+table {
+	width: 100%;
+	border-collapse: collapse;
+}
+</style>
 </head>
 <body>
-	<h1>네이버</h1>
+	<table>
+	<tr><th>id</th><th>title</th><th>user</th><th>date</th></tr>
+	<c:forEach items="${items }" var="i">
+	<tr>
+	<td>${i.id }</td>
+	<td>${i.title }</td>
+	<td>${i.userId }</td>
+	<td>${i.created }</td>
+	</tr>
+	</c:forEach>
+	</table>	
 
 	<c:choose>
 		<c:when test="${empty user }">
