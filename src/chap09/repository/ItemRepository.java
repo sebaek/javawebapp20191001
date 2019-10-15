@@ -77,4 +77,37 @@ public class ItemRepository {
 		return item;
 	}
 
+	public boolean addItem(Item item) {
+		String sql = "INSERT INTO items (title, body, user_id) "
+				+ "VALUES (?, ?, ?)";
+		
+		try (
+			PreparedStatement pstmt
+				= con.prepareStatement(sql);
+				) {
+			pstmt.setString(1, item.getTitle());
+			pstmt.setString(2, item.getBody());
+			pstmt.setString(3, item.getUserId());
+			
+			int count = pstmt.executeUpdate();
+			
+			if (count == 1) {
+				return true;
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return false;
+	}
+	
+
 }
+
+
+
+
+
+
+
