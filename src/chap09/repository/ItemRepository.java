@@ -127,6 +127,23 @@ public class ItemRepository {
 		
 		return false;
 	}
+
+	public void removeItem(Item item) {
+
+		String sql = "DELETE FROM items "
+				+ "WHERE id=?";
+		try (
+			PreparedStatement pstmt = con.prepareStatement(sql);
+		) {
+			pstmt.setInt(1, item.getId());
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+	}
 	
 
 	

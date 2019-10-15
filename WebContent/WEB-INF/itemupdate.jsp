@@ -16,7 +16,6 @@ textarea {
 </head>
 <body>
 <c:url value="/item/update" var="updateUrl" >
-	<c:param name="id" value="${item.id }" />
 </c:url>
 
 <form action="${updateUrl }" method="post">
