@@ -19,7 +19,7 @@ table {
 </head>
 <body>
 	<table>
-	<tr><th>id</th><th>title</th><th>user</th><th>ago</th></tr>
+	<tr><th>id</th><th>title</th><th>user</th><th>created</th><th>ago</th></tr>
 	<c:forEach items="${items }" var="i">
 	
 	<c:url value="/item" var="itemUrl">
@@ -31,11 +31,20 @@ table {
 	<td>${i.id }</td>
 	<td><a href="${itemUrl }">${i.title }</a></td>
 	<td>${i.userId }</td>
+	<td>${i.created }</td>
 	<td>${i.timeAgo }</td>
 	</tr>
 	</c:forEach>
-	</table>	
-
+	</table>
+	<a href="<c:url value="/" />">처음</a>
+	<c:forEach begin="${minPage }" end="${maxPage}" var="p">
+		<c:url value="/" var="pageUrl">
+			<c:param name="page" value="${p }" />
+		</c:url>
+		<a href="${pageUrl }">${p }</a>
+	</c:forEach>
+		
+	<br>
 	<c:choose>
 		<c:when test="${empty user }">
 			<a href="${loginUrl }">로그인</a>

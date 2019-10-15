@@ -32,11 +32,19 @@ public class MainController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String pageStr = request.getParameter("page");
+		pageStr = pageStr == null ? "1" : pageStr;
+		int page = Integer.parseInt(pageStr);
+		int minPage = page > 3 ? page - 2 : 1;
+		int maxPage = minPage + 4;
 		
 		ItemRepository repo = new ItemRepository();
 		repo.setConnection(getServletContext().getAttribute("connection"));
-		List<Item> items = repo.list();
+		List<Item> items = repo.list(page);
 		
+		request.setAttribute("minPage", minPage);
+		request.setAttribute("maxPage", maxPage);
+		request.setAttribute("curPage", page);
 		request.setAttribute("items", items);
 		
 		RequestDispatcher view = request

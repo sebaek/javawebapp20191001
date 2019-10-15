@@ -144,6 +144,46 @@ public class ItemRepository {
 		
 		
 	}
+
+	public List<Item> list(int page) {
+		int itemPerPage = 5;
+		String sql = "SELECT id, title, body, user_id, created " 
+				+ "FROM items ORDER BY id DESC "
+				+ "LIMIT ?, ?";
+		List<Item> list = new ArrayList<>();
+		ResultSet rs = null;
+
+		try (PreparedStatement pstmt = con.prepareStatement(sql);) {
+			pstmt.setInt(1, (page - 1) * itemPerPage);
+			pstmt.setInt(2, itemPerPage);
+			
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				Item item = new Item();
+				item.setId(rs.getInt(1));
+				item.setTitle(rs.getString(2));
+				item.setBody(rs.getString(3));
+				item.setUserId(rs.getString(4));
+				item.setCreated(rs.getTimestamp(5));
+
+				list.add(item);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+
+		return list;
+	}
 	
 
 	
