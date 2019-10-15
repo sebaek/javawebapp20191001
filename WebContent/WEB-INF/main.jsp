@@ -19,7 +19,7 @@ table {
 </head>
 <body>
 	<table>
-	<tr><th>id</th><th>title</th><th>user</th><th>created</th><th>ago</th></tr>
+	<tr><th>id</th><th>title</th><th>user</th><th>ago</th></tr>
 	<c:forEach items="${items }" var="i">
 	
 	<c:url value="/item" var="itemUrl">
@@ -31,7 +31,6 @@ table {
 	<td>${i.id }</td>
 	<td><a href="${itemUrl }">${i.title }</a></td>
 	<td>${i.userId }</td>
-	<td>${i.created }</td>
 	<td>${i.timeAgo }</td>
 	</tr>
 	</c:forEach>
