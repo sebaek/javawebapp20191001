@@ -47,8 +47,7 @@ public class Item {
 	public String getTimeAgo() {
 		LocalDateTime old = LocalDateTime.ofInstant(created.toInstant(), ZoneOffset.UTC);
 		LocalDateTime now = LocalDateTime.now(ZoneOffset.UTC);
-		System.out.println(old);
-		System.out.println(now);
+
 		long years = ChronoUnit.YEARS.between(old, now);
 		long months = ChronoUnit.MONTHS.between(old, now);
 		long weeks = ChronoUnit.WEEKS.between(old, now);
