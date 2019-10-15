@@ -49,6 +49,15 @@ public class Item {
 		d = d.replaceFirst("M.*", "분");
 		d = d.replaceFirst("S.*", "초");
 		d = d + " 전";
+		
+		if (d.contains("시간")) {
+			String e = d.substring(0, d.lastIndexOf("시간"));
+			int f = Integer.parseInt(e);
+			f = f / 24;
+			if (f > 0) {
+				d = f + "일 전";
+			}
+		}
 	
 		return d;
 	}
