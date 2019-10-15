@@ -13,6 +13,14 @@ ${item.body }<br>
 ${item.userId }<br>
 ${item.created }<br>
 
+<c:if test="${item.userId eq user.id }" >
+<c:url value="/item/update" var="updateUrl" >
+	<c:param name="id" value="${item.id }" />
+</c:url>
+
+<a href="${updateUrl }">수정</a>
+</c:if>
+
 
 
 

@@ -1,5 +1,7 @@
 package chap09.bean;
 
+import java.time.Duration;
+import java.time.Instant;
 import java.util.Date;
 
 public class Item {
@@ -39,5 +41,13 @@ public class Item {
 		this.created = created;
 	}
 	
-	
+//	public String getTimeAgo() {
+//		return Duration.between(created.toInstant(), Instant.now()).toString();
+//	}
 }
+
+
+
+
+
+

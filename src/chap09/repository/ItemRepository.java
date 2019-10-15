@@ -101,8 +101,35 @@ public class ItemRepository {
 
 		return false;
 	}
+
+	public boolean updateItem(Item item) {
+		String sql = "UPDATE items "
+				+ "SET title=?, body=? "
+				+ "WHERE id=?";
+		
+		try (
+			PreparedStatement pstmt = con.prepareStatement(sql);
+		) {
+			pstmt.setString(1, item.getTitle());
+			pstmt.setString(2, item.getBody());
+			pstmt.setInt(3, item.getId());
+			
+			int count = pstmt.executeUpdate();
+			
+			if (count == 1) {
+				return true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		
+		return false;
+	}
 	
 
+	
 }
 
 

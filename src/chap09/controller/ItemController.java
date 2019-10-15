@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import chap09.bean.Item;
 import chap09.repository.ItemRepository;
@@ -30,14 +31,14 @@ public class ItemController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		HttpSession session = request.getSession();
 		int id = Integer.valueOf(request.getParameter("id"));
 		ItemRepository repo = new ItemRepository();
 		repo.setConnection(getServletContext().getAttribute("connection"));
 		Item item = repo.getItem(id);
 		
 		if (item != null) {
-			request.setAttribute("item", item);
+			session.setAttribute("item", item);
 			request.getRequestDispatcher("/WEB-INF/item.jsp")
 				.forward(request, response);
 		} else {
