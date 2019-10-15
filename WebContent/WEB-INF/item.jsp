@@ -9,7 +9,7 @@
 </head>
 <body>
 ${item.title }<br>
-${item.body }<br>
+<pre>${item.body }</pre><br>
 ${item.userId }<br>
 ${item.timeAgo }<br>
 

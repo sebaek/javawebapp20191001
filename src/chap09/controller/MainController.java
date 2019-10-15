@@ -35,7 +35,7 @@ public class MainController extends HttpServlet {
 		String pageStr = request.getParameter("page");
 		pageStr = pageStr == null ? "1" : pageStr;
 		int page = Integer.parseInt(pageStr);
-		int minPage = page > 3 ? page - 2 : 1;
+		int minPage = page > 2 ? page - 2 : 1;
 		int maxPage = minPage + 4;
 		
 		ItemRepository repo = new ItemRepository();
