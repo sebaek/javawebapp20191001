@@ -1,7 +1,17 @@
+create table item_files(
+id int primary key auto_increment,
+path varchar(1000), 
+item_id int
+);
+
+desc item_files;
+drop table item_files;
+
+select * from items order by id desc limit 0, 5;
 set @@global.time_zone = '+00:00';
 set time_zone = '+00:00';
 select @@time_zone;
-
+update items set created='1999-11-11' where id=1;
 select * from items;
 insert into items (title, body, user_id)
 values ('세번째 게시물', '본문3', 'ulsan');
