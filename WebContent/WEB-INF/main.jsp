@@ -31,7 +31,7 @@ table {
 	<td>${i.id }</td>
 	<td><a href="${itemUrl }">${i.title }</a></td>
 	<td>${i.userId }</td>
-	<td>${i.created }</td>
+	<td>${i.timeAgo }</td>
 	</tr>
 	</c:forEach>
 	</table>	

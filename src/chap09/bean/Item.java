@@ -41,9 +41,17 @@ public class Item {
 		this.created = created;
 	}
 	
-//	public String getTimeAgo() {
-//		return Duration.between(created.toInstant(), Instant.now()).toString();
-//	}
+	public String getTimeAgo() {
+		
+		String d = Duration.between(created.toInstant(), Instant.now()).toString();
+		d = d.substring(2, d.lastIndexOf(".")) + "S";
+		d = d.replaceFirst("H.*", "시간");
+		d = d.replaceFirst("M.*", "분");
+		d = d.replaceFirst("S.*", "초");
+		d = d + " 전";
+	
+		return d;
+	}
 }
 
 

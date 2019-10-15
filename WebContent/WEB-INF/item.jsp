@@ -11,7 +11,7 @@
 ${item.title }<br>
 ${item.body }<br>
 ${item.userId }<br>
-${item.created }<br>
+${item.timeAgo }<br>
 
 <c:if test="${item.userId eq user.id }" >
 	<c:url value="/item/update" var="updateUrl" >
