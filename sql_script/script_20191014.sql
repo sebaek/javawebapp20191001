@@ -1,3 +1,7 @@
+set @@global.time_zone = '+00:00';
+set time_zone = '+00:00';
+select @@time_zone;
+
 select * from items;
 insert into items (title, body, user_id)
 values ('세번째 게시물', '본문3', 'ulsan');

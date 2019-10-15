@@ -45,6 +45,7 @@ table {
 			<p>반갑습니다. ${user.nickName } 님</p>
 			<a href="<c:url value="/userinfo.jsp" />">사용자</a>
 			<br>
+			<a href="<c:url value="/item/insert" />">글 작성</a>
 			<a href="<c:url value="/logout" />">로그아웃</a>
 		</c:otherwise>
 	</c:choose>

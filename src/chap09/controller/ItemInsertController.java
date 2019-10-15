@@ -1,29 +1,23 @@
 package chap09.controller;
 
 import java.io.IOException;
-import java.util.List;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import chap09.bean.Item;
-import chap09.repository.ItemRepository;
-
 /**
- * Servlet implementation class MainController
+ * Servlet implementation class ItemInsertController
  */
-@WebServlet("/")
-public class MainController extends HttpServlet {
+@WebServlet("/item/insert")
+public class ItemInsertController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MainController() {
+    public ItemInsertController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,16 +26,8 @@ public class MainController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		ItemRepository repo = new ItemRepository();
-		repo.setConnection(getServletContext().getAttribute("connection"));
-		List<Item> items = repo.list();
-		
-		request.setAttribute("items", items);
-		
-		RequestDispatcher view = request
-				.getRequestDispatcher("/WEB-INF/main.jsp");
-		view.forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/iteminsert.jsp")
+			.forward(request, response);
 	}
 
 	/**
