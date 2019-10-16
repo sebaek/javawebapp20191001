@@ -44,7 +44,8 @@ public class ItemRepository {
 	public Item getItem(int id) {
 		Item item = null;
 		ResultSet rs = null;
-		String sql = "SELECT id, title, body, created, user_id " + "FROM items " + "WHERE id=?";
+		String sql = "SELECT id, title, body, created, user_id, file " 
+				+ "FROM items " + "WHERE id=?";
 
 		try (PreparedStatement pstmt = con.prepareStatement(sql);) {
 			pstmt.setInt(1, id);
@@ -58,6 +59,7 @@ public class ItemRepository {
 				item.setBody(rs.getString(3));
 				item.setCreated(rs.getTimestamp(4));
 				item.setUserId(rs.getString(5));
+				item.setFile(rs.getString(6));
 
 			}
 			return item;
