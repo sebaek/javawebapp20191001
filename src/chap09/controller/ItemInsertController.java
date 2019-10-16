@@ -50,6 +50,7 @@ public class ItemInsertController extends HttpServlet {
 		User user = (User) session.getAttribute("user");
 		request.setCharacterEncoding("utf-8");
 		Part filePart = request.getPart("file");
+		String fileName = filePart.getSubmittedFileName();
 		String title = request.getParameter("title");
 		String body = request.getParameter("body");
 		String userId = user.getId();
@@ -58,21 +59,23 @@ public class ItemInsertController extends HttpServlet {
 		item.setTitle(title);
 		item.setBody(body);
 		item.setUserId(userId);
-		item.setFile(filePart.getSubmittedFileName());
+		item.setFile(fileName);
 		
 		ItemRepository repo = new ItemRepository();
 		repo.setConnection(getServletContext().getAttribute("connection"));
 		if (repo.addItem(item)) {
-			String filePathStr = application
-					.getRealPath("/image/" + item.getId());
-			File filePath = new File(filePathStr);
-			if (!filePath.exists()) {
-				filePath.mkdirs();
+			if (fileName.length() > 0) {
+				String filePathStr = application
+						.getRealPath("/image/" + item.getId());
+				File filePath = new File(filePathStr);
+				if (!filePath.exists()) {
+					filePath.mkdirs();
+				}
+				filePart.write(filePathStr 
+						+ File.separator + fileName);
+				
+				System.out.println(filePathStr);
 			}
-			filePart.write(filePathStr 
-					+ File.separator + filePart.getSubmittedFileName());
-			
-			System.out.println(filePathStr);
 			
 			response.sendRedirect(request.getContextPath() + "/");
 			return;

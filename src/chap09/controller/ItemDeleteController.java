@@ -48,9 +48,10 @@ public class ItemDeleteController extends HttpServlet {
 					"/image/" + item.getId());
 			File folder = new File(path);
 			File[] files = folder.listFiles();
-			
-			for (File file : files) {
-				file.delete();
+			if (files != null) {
+				for (File file : files) {
+					file.delete();
+				}
 			}
 			folder.delete();
 			
