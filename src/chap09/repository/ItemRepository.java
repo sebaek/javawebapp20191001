@@ -120,7 +120,7 @@ public class ItemRepository {
 
 	public boolean updateItem(Item item) {
 		String sql = "UPDATE items "
-				+ "SET title=?, body=? "
+				+ "SET title=?, body=?, file=? "
 				+ "WHERE id=?";
 		
 		try (
@@ -128,7 +128,8 @@ public class ItemRepository {
 		) {
 			pstmt.setString(1, item.getTitle());
 			pstmt.setString(2, item.getBody());
-			pstmt.setInt(3, item.getId());
+			pstmt.setString(3, item.getFile());
+			pstmt.setInt(4, item.getId());
 			
 			int count = pstmt.executeUpdate();
 			
