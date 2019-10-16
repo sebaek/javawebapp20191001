@@ -13,6 +13,15 @@ public class Item {
 	private String body;
 	private String userId;
 	private Date created;
+	private String file;
+	
+	public String getFile() {
+		return file;
+	}
+	public void setFile(String file) {
+		this.file = file;
+	}
+	
 	public int getId() {
 		return id;
 	}

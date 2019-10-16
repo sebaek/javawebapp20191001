@@ -78,25 +78,39 @@ public class ItemRepository {
 	}
 
 	public boolean addItem(Item item) {
-		String sql = "INSERT INTO items (title, body, user_id) "
-				+ "VALUES (?, ?, ?)";
-		
+		String sql = "INSERT INTO items (title, body, user_id, file) "
+				+ "VALUES (?, ?, ?, ?)";
+		ResultSet rs = null;
 		try (
 			PreparedStatement pstmt
-				= con.prepareStatement(sql);
+				= con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 				) {
 			pstmt.setString(1, item.getTitle());
 			pstmt.setString(2, item.getBody());
 			pstmt.setString(3, item.getUserId());
+			pstmt.setString(4, item.getFile());
 			
 			int count = pstmt.executeUpdate();
 			
 			if (count == 1) {
+				rs = pstmt.getGeneratedKeys();
+				if (rs.next()) {
+					item.setId(rs.getInt(1));
+				}
 				return true;
 			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
 
 		return false;

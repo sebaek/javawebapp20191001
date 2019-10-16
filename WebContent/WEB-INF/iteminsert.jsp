@@ -15,9 +15,11 @@ textarea {
 </style>
 </head>
 <body>
-<form action="<c:url value="/item/insert" />" method="post">
+<form action="<c:url value="/item/insert" />" 
+	method="post" enctype="multipart/form-data">
 <input type="text" name="title"><br>
 <textarea name="body"></textarea><br>
+<input type="file" name="file"><br>
 <input type="submit" value="등록">
 
 </form>

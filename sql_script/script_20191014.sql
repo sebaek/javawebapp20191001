@@ -1,11 +1,5 @@
-create table item_files(
-id int primary key auto_increment,
-path varchar(1000), 
-item_id int
-);
-
-desc item_files;
-drop table item_files;
+alter table items 
+add column file varchar(1000);
 
 select * from items order by id desc limit 0, 5;
 set @@global.time_zone = '+00:00';
