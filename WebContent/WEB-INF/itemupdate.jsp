@@ -16,6 +16,23 @@ img {
 	height: 150px;
 }
 </style>
+<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+<script>
+$(document).ready(function() {
+	$("#update-radio").click(function() {
+		$("#file-input").show();
+	});
+		
+	$("#remove-radio").click(function() {
+		$("#file-input").hide();
+	});
+	
+});
+
+</script>
 </head>
 <body>
 <c:url value="/item/update" var="updateUrl" >
@@ -28,15 +45,15 @@ img {
 <textarea name="body">${item.body }</textarea><br>
 <label>
 파일 삭제
-<input type="radio" name="file-update" value="remove">
+<input id="remove-radio" type="radio" name="file-update" value="remove">
 </label>
 
 <label>
 파일 변경
-<input type="radio" name="file-update" value="update" checked>
+<input id="update-radio" type="radio" name="file-update" value="update" checked>
 </label> 
 <br>
-<input type="file" name="file" ><br>
+<input id="file-input" type="file" name="file" ><br>
 <input type="submit" value="수정">
 
 </form>
