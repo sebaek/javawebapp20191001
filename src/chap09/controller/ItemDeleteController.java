@@ -1,7 +1,9 @@
 package chap09.controller;
 
+import java.io.File;
 import java.io.IOException;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -33,6 +35,7 @@ public class ItemDeleteController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
+		ServletContext application = getServletContext();
 		Item item = (Item) session.getAttribute("item");
 		User user = (User) session.getAttribute("user");
 		if (user != null && item.getUserId().equals(user.getId())) {
@@ -40,6 +43,20 @@ public class ItemDeleteController extends HttpServlet {
 			repo.setConnection(getServletContext()
 					.getAttribute("connection"));
 			repo.removeItem(item);
+			
+			String path = application.getRealPath(
+					"/image/" + item.getId());
+			
+			File folder = new File(path);
+			
+			String[] files = folder.list();
+			
+			for (String fileName : files) {
+				File f = new File(fileName);
+				f.delete();
+			}
+			folder.delete();
+			
 			response.sendRedirect(request.getContextPath() + "/");
 			
 		} else {
