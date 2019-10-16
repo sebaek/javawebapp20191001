@@ -19,7 +19,7 @@ textarea {
 	method="post" enctype="multipart/form-data">
 <input type="text" name="title"><br>
 <textarea name="body"></textarea><br>
-<input type="file" name="file"><br>
+<input type="file" accept="image/*" name="file"><br>
 <input type="submit" value="등록">
 
 </form>

@@ -53,7 +53,7 @@ $(document).ready(function() {
 <input id="update-radio" type="radio" name="file-update" value="update" checked>
 </label> 
 <br>
-<input id="file-input" type="file" name="file" ><br>
+<input id="file-input" accept="image/*" type="file" name="file" ><br>
 <input type="submit" value="수정">
 
 </form>
