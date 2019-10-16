@@ -25,7 +25,7 @@ ${item.timeAgo }<br>
 <c:if test="${item.userId eq user.id }" >
 	<c:url value="/item/update" var="updateUrl" >
 	</c:url>
-	
+	 
 	<a href="${updateUrl }">수정</a> 
 	<a href="<c:url value="/item/delete" />">삭제</a>
 </c:if>
