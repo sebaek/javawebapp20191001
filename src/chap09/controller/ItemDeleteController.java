@@ -46,10 +46,7 @@ public class ItemDeleteController extends HttpServlet {
 			
 			String path = application.getRealPath(
 					"/image/" + item.getId());
-			System.out.println(path);
 			File folder = new File(path);
-			System.out.println(folder.getAbsolutePath());
-			System.out.println(folder.getCanonicalPath());
 			File[] files = folder.listFiles();
 			
 			for (File file : files) {
