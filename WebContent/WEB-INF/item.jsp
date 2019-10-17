@@ -28,15 +28,13 @@ $(document).ready(function() {
 		
 		var cancelBtn = $('<button />').text('취소').click(function() {
 			commentContainer.html(commentContent);
+			commentContainer.find('.update-btn').click(update);
 		});
 		
 		form.append(textArea).append(submit);
 		
 		commentContainer.empty();
 		commentContainer.append(form).append(cancelBtn);
-		//commentContainer.find('.update-btn').click(update);
-		//console.log(commentContainer.find('.update-btn'));
-		commentContainer.find('.update-btn').click(update);
 		
 	};
 	$('.update-btn').click(update);
