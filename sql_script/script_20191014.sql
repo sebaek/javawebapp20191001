@@ -1,5 +1,15 @@
+select * from comments;
+create table comments (
+id int primary key auto_increment,
+comment varchar(1000),
+item_id int,
+user_id varchar(255),
+created datetime default now()
+);
+drop table comments;
+
 alter table items 
-add column file varchar(1000);
+add column file varchar(255);
 
 select * from items order by id desc limit 0, 5;
 set @@global.time_zone = '+00:00';
