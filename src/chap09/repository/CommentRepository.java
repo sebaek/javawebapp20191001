@@ -88,6 +88,25 @@ public class CommentRepository {
 			e.printStackTrace();
 		}
 	}
+
+	public void updateComment(Comment comment) {
+		String sql = "UPDATE comments "
+				+ "SET comment=? "
+				+ "WHERE id=? AND user_id=?";
+		
+		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+			
+			pstmt.setString(1, comment.getComment());
+			pstmt.setInt(2, comment.getId());
+			pstmt.setString(3, comment.getUserId());
+			
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
 	
 	
 }

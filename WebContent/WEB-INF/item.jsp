@@ -5,6 +5,49 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+$(document).ready(function() {
+	var update = function() {
+		var commentContainer = $(this).closest('.comment-container');
+		var commentContent = commentContainer.html();
+		
+		var form = $('<form />').attr({
+			'action' : $(this).attr('update-url'),
+			'method' : 'post'
+		});
+		
+		var textArea = $('<textArea />').attr({
+			'name' : 'comment'
+		}).text(commentContainer.find('.comment-body').text());
+		
+		var submit = $('<input />').attr({
+			'type' : 'submit',
+			'value' : '수정'
+		});
+		
+		var cancelBtn = $('<button />').text('취소').click(function() {
+			commentContainer.html(commentContent);
+		});
+		
+		form.append(textArea).append(submit);
+		
+		commentContainer.empty();
+		commentContainer.append(form).append(cancelBtn);
+		//commentContainer.find('.update-btn').click(update);
+		//console.log(commentContainer.find('.update-btn'));
+		commentContainer.find('.update-btn').click(update);
+		
+	};
+	$('.update-btn').click(update);
+});
+
+
+
+
+</script>
+
+
 <title>Insert title here</title>
 <style>
 img {
@@ -38,15 +81,21 @@ ${item.timeAgo }<br>
 </c:if>
 
 <c:forEach items="${comments }" var="comment">
-<pre>${comment.comment }</pre>
-<span>${comment.userId }</span><br>
-<span>${comment.timeAgo }</span>
-<c:if test="${comment.userId eq user.id }" >
-	<c:url value="/comment/delete" var="commentDeleteUrl">
-		<c:param name="id" value="${comment.id }"  />
-	</c:url>
-	<a href="${commentDeleteUrl }" >삭제</a>
-</c:if>
+<div class="comment-container">
+	<pre class="comment-body">${comment.comment }</pre>
+	<span>${comment.userId }</span><br>
+	<span>${comment.timeAgo }</span>
+	<c:if test="${comment.userId eq user.id }" >
+		<c:url value="/comment/delete" var="commentDeleteUrl">
+			<c:param name="id" value="${comment.id }"  />
+		</c:url>
+		<c:url value="/comment/update" var="commentUpdateUrl">
+			<c:param name="id" value="${comment.id }" />
+		</c:url>
+		<button class="update-btn" update-url="${commentUpdateUrl }">수정</button>
+		<a href="${commentDeleteUrl }" >삭제</a>
+	</c:if>
+</div>
 </c:forEach>
 
 
