@@ -30,8 +30,19 @@ ${item.timeAgo }<br>
 	<a href="<c:url value="/item/delete" />">삭제</a>
 </c:if>
 
+<c:if test="${not empty user }" >
+<form action="<c:url value="/comment/insert" />" method="post">
+	<textarea name="comment"></textarea>
+	<input type="submit" value="댓글">
+</form>
+</c:if>
 
 
 
 </body>
 </html>
+
+
+
+
+

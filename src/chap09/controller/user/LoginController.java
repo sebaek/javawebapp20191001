@@ -1,4 +1,4 @@
-package chap09.controller;
+package chap09.controller.user;
 
 import java.io.IOException;
 

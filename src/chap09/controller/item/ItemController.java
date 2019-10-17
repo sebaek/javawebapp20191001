@@ -1,9 +1,7 @@
-package chap09.controller;
+package chap09.controller.item;
 
-import java.io.File;
 import java.io.IOException;
 
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,20 +10,19 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import chap09.bean.Item;
-import chap09.bean.User;
 import chap09.repository.ItemRepository;
 
 /**
- * Servlet implementation class ItemDeleteController
+ * Servlet implementation class ItemController
  */
-@WebServlet("/item/delete")
-public class ItemDeleteController extends HttpServlet {
+@WebServlet("/item")
+public class ItemController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ItemDeleteController() {
+    public ItemController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,33 +32,19 @@ public class ItemDeleteController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		ServletContext application = getServletContext();
-		Item item = (Item) session.getAttribute("item");
-		User user = (User) session.getAttribute("user");
-		if (user != null && item.getUserId().equals(user.getId())) {
-			ItemRepository repo = new ItemRepository();
-			repo.setConnection(getServletContext()
-					.getAttribute("connection"));
-			repo.removeItem(item);
-			
-			String path = application.getRealPath(
-					"/image/" + item.getId());
-			File folder = new File(path);
-			File[] files = folder.listFiles();
-			if (files != null) {
-				for (File file : files) {
-					file.delete();
-				}
-			}
-			folder.delete();
-			
-			response.sendRedirect(request.getContextPath() + "/");
-			
+		int id = Integer.valueOf(request.getParameter("id"));
+		ItemRepository repo = new ItemRepository();
+		repo.setConnection(getServletContext().getAttribute("connection"));
+		Item item = repo.getItem(id);
+		
+		if (item != null) {
+			session.setAttribute("item", item);
+			request.getRequestDispatcher("/WEB-INF/item.jsp")
+				.forward(request, response);
 		} else {
+			System.out.println("아이템을 읽는 중에 문제 발생");
 			response.sendRedirect(request.getContextPath() + "/");
 		}
-		
-		
 		
 	}
 
@@ -74,7 +57,3 @@ public class ItemDeleteController extends HttpServlet {
 	}
 
 }
-
-
-
-

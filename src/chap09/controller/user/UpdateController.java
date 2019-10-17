@@ -1,28 +1,28 @@
-package chap09.controller;
+package chap09.controller.user;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import chap09.bean.User;
 import chap09.repository.UserRepository;
 
 /**
- * Servlet implementation class SignupController
+ * Servlet implementation class UpdateController
  */
-@WebServlet("/signup")
-public class SignupController extends HttpServlet {
+@WebServlet("/update")
+public class UpdateController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SignupController() {
+    public UpdateController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,8 +31,8 @@ public class SignupController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/signup.jsp");
-		view.forward(request, response);
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -40,32 +40,30 @@ public class SignupController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		User user = new User();
-		user.setId(request.getParameter("id"));
-		user.setPassword(request.getParameter("password"));
-		user.setNickName(request.getParameter("nick-name"));
-		user.setEmail(request.getParameter("email"));
+		
+		HttpSession session = request.getSession();
+		User origin = (User) session.getAttribute("user");
+		User target = new User();
+		target.setId(origin.getId());
+		target.setPassword(request.getParameter("password"));
+		target.setNickName(request.getParameter("nick-name"));
+		target.setEmail(request.getParameter("email"));
 		
 		UserRepository repo = new UserRepository();
 		repo.setConnection(getServletContext()
 				.getAttribute("connection"));
-		if (repo.addUser(user)) {
-			response.sendRedirect(request.getContextPath() + "/");
-			System.out.println("사용자 등록 요청함");
+		if (repo.updateUser(origin, target)) {
+			session.setAttribute("user", target);
+			response
+			.sendRedirect(request.getContextPath() + "/userinfo.jsp");
 		} else {
-			request.setAttribute("user", user);
-			request.setAttribute("error", "사용자 등록에 실패하였습니다.");
-			request
-			.getRequestDispatcher("/WEB-INF/signup.jsp")
-			.forward(request, response);
+			session.setAttribute("error", "변경되지 않았습니다");
+			response
+			.sendRedirect(request.getContextPath() + "/userinfo.jsp");
 		}
-		
 	}
 
 }
-
-
-
 
 
 

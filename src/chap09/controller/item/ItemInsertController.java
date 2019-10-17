@@ -1,4 +1,4 @@
-package chap09.controller;
+package chap09.controller.item;
 
 import java.io.File;
 import java.io.IOException;
@@ -14,20 +14,21 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import chap09.bean.Item;
+import chap09.bean.User;
 import chap09.repository.ItemRepository;
 
 /**
- * Servlet implementation class ItemUpdateController
+ * Servlet implementation class ItemInsertController
  */
-@WebServlet("/item/update")
+@WebServlet("/item/insert")
 @MultipartConfig
-public class ItemUpdateController extends HttpServlet {
+public class ItemInsertController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ItemUpdateController() {
+    public ItemInsertController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,7 +37,7 @@ public class ItemUpdateController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/itemupdate.jsp")
+		request.getRequestDispatcher("/WEB-INF/iteminsert.jsp")
 			.forward(request, response);
 	}
 
@@ -44,41 +45,28 @@ public class ItemUpdateController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
 		HttpSession session = request.getSession();
 		ServletContext application = getServletContext();
+		User user = (User) session.getAttribute("user");
+		request.setCharacterEncoding("utf-8");
 		Part filePart = request.getPart("file");
-		String updateOrRemove = request.getParameter("file-update");
+		String fileName = filePart.getSubmittedFileName();
+		String title = request.getParameter("title");
+		String body = request.getParameter("body");
+		String userId = user.getId();
 		
-		Item originItem = (Item) session.getAttribute("item");
+		Item item = new Item();
+		item.setTitle(title);
+		item.setBody(body);
+		item.setUserId(userId);
+		item.setFile(fileName);
+		
 		ItemRepository repo = new ItemRepository();
 		repo.setConnection(getServletContext().getAttribute("connection"));
-		Item targetItem = new Item();
-		targetItem.setId(originItem.getId());
-		targetItem.setTitle(request.getParameter("title"));
-		targetItem.setBody(request.getParameter("body"));
-		targetItem.setUserId(originItem.getUserId());
-		
-		if (updateOrRemove.equals("remove")) {
-			targetItem.setFile("");
-			
-			String path = application.getRealPath(
-					"/image/" + originItem.getId());
-			File folder = new File(path);
-			File[] files = folder.listFiles();
-			if (files != null) {
-				for (File file : files) {
-					file.delete();
-				}
-			}
-			folder.delete();
-			
-		} else {
-			String fileName = filePart.getSubmittedFileName();
+		if (repo.addItem(item)) {
 			if (fileName.length() > 0) {
-				targetItem.setFile(fileName);
 				String filePathStr = application
-						.getRealPath("/image/" + originItem.getId());
+						.getRealPath("/image/" + item.getId());
 				File filePath = new File(filePathStr);
 				if (!filePath.exists()) {
 					filePath.mkdirs();
@@ -87,22 +75,33 @@ public class ItemUpdateController extends HttpServlet {
 						+ File.separator + fileName);
 				
 				System.out.println(filePathStr);
-			} else {
-				targetItem.setFile(originItem.getFile());
 			}
-		}
-		
-		if (repo.updateItem(targetItem)) {
+			
 			response.sendRedirect(request.getContextPath() + "/");
 			return;
 		} else {
-			request.setAttribute("item", targetItem);
-			request.getRequestDispatcher("/WEB-INF/itemupdate.jsp")
-			.forward(request, response);
+			System.out.println("아이템 입력 중 실패함.");
+			request.setAttribute("item", item);
+			request.getRequestDispatcher("/WEB-INF/iteminsert.jsp")
+				.forward(request, response);
+			
 		}
+		
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
