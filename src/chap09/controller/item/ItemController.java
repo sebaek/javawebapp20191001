@@ -1,6 +1,7 @@
 package chap09.controller.item;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,7 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import chap09.bean.Comment;
 import chap09.bean.Item;
+import chap09.repository.CommentRepository;
 import chap09.repository.ItemRepository;
 
 /**
@@ -32,12 +35,18 @@ public class ItemController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
+		Object con = getServletContext().getAttribute("connection");
 		int id = Integer.valueOf(request.getParameter("id"));
 		ItemRepository repo = new ItemRepository();
-		repo.setConnection(getServletContext().getAttribute("connection"));
+		repo.setConnection(con);
 		Item item = repo.getItem(id);
 		
 		if (item != null) {
+			CommentRepository crepo = new CommentRepository();
+			crepo.setConnection(con);
+			List<Comment> comments = crepo.list(item.getId());
+			
+			request.setAttribute("comments", comments);
 			session.setAttribute("item", item);
 			request.getRequestDispatcher("/WEB-INF/item.jsp")
 				.forward(request, response);

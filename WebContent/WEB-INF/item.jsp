@@ -32,10 +32,16 @@ ${item.timeAgo }<br>
 
 <c:if test="${not empty user }" >
 <form action="<c:url value="/comment/insert" />" method="post">
-	<textarea name="comment"></textarea>
+	<textarea name="comment">${comment.comment }</textarea>
 	<input type="submit" value="댓글">
 </form>
 </c:if>
+
+<c:forEach items="${comments }" var="comment">
+<pre>${comment.comment }</pre>
+<span>${comment.userId }</span><br>
+<span>${comment.timeAgo }</span><br>
+</c:forEach>
 
 
 
