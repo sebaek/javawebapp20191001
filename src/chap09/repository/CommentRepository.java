@@ -75,6 +75,19 @@ public class CommentRepository {
 		
 		return list;
 	}
+
+	public void removeComment(int commentId, String userId) {
+		String sql = "DELETE FROM comments "
+				+ "WHERE id=? AND user_id=? ";
+		
+		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+			pstmt.setInt(1, commentId);
+			pstmt.setString(2, userId);
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 	
 }

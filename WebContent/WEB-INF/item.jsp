@@ -40,8 +40,16 @@ ${item.timeAgo }<br>
 <c:forEach items="${comments }" var="comment">
 <pre>${comment.comment }</pre>
 <span>${comment.userId }</span><br>
-<span>${comment.timeAgo }</span><br>
+<span>${comment.timeAgo }</span>
+<c:if test="${comment.userId eq user.id }" >
+	<c:url value="/comment/delete" var="commentDeleteUrl">
+		<c:param name="id" value="${comment.id }"  />
+	</c:url>
+	<a href="${commentDeleteUrl }" >삭제</a>
+</c:if>
 </c:forEach>
+
+
 
 
 
