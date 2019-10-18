@@ -10,8 +10,6 @@
 	display: flex;
 }
 
-
-
 .navbar a {
 	display: flex;
 	align-content: center;
@@ -22,25 +20,28 @@
 
 .navbar a:hover {
 	background-color: #777;
-	
+	border-bottom: 5px solid yellow;
 }
 
 .itemRow a {
 	text-decoration: none;
 	
 }
-.itemRow a:hover {
+/* .itemRow a:hover {
 	background-color: grey;
-	
-}
+} */
 .itemRow {
 	width: 90%;
 	margin: auto;
 	display: flex;
 	height: 40px;
-	border: 1px solid black;
+	/* border: 1px solid black; */
+	box-shadow: 3px 3px 8px #888888;
 	margin-bottom: 5px;
 	padding-left: 10px;
+}
+.itemRow:hover {
+	box-shadow: 8px 8px 8px #888888;
 }
 .itemLink {
 	display: flex;
@@ -52,7 +53,7 @@
 	align-items: center;
 	flex-basis: 10%;
 }
-.itemUserId {
+.itemUserId { 
 	display: flex;
 	align-items: center;
 	flex-basis: 20%;
@@ -63,7 +64,6 @@
 	flex-basis: 20%;
 }
 .page-container {
-	
 	display: flex;
 	width: 25%;
 	margin: auto;

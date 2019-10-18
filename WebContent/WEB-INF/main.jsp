@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8"> 
 <link rel="stylesheet" href="<c:url value='/mystyle.css' />">
 <title>중앙프로젝트</title>
 
