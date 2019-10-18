@@ -9,7 +9,7 @@
 </div>
 <div class="nav-right">
 	<c:choose>
-		<c:when test="${empty user }">
+		<c:when test="${empty sessionScope.user }">
 			<a href="${loginUrl }">로그인</a>
 			<a href="<c:url value="/signup" />">회원가입</a>
 		</c:when>

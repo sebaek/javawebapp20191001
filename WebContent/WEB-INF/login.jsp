@@ -33,18 +33,9 @@
 			</div>
 		</form>
 	</div>
+<span class="message">${loginFailed }</span>
+	
 
-	${loginFailed }
-	<%--
-
-<% 
-String error = (String) request.getAttribute("loginFailed");
-if (error != null) {
-	out.print(error);
-}
-
-%>
- --%>
 
 </body>
 </html>

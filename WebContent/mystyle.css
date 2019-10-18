@@ -163,11 +163,11 @@
 }
 
 .form-row {
+	position: relative;
 	display: flex;
 	justify-content: space-around;
 	margin: 3px;
 	height: 30px;
-	display: flex;
 	margin-bottom: 10px;
 }
 
@@ -189,3 +189,9 @@
 h1 {
 	text-align: center;
 }
+
+.message {
+	position: absolute;
+	right: 3px;
+}
+

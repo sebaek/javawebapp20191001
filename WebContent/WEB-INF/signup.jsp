@@ -32,31 +32,33 @@
 		<h1>회원 가입</h1>
 		<form action="<c:url value="/signup" />" method="post">
 			<div class="form-row">
-			<label for="id">아이디</label> <input type="text" name="id"
-				value="${user.id }"> 
+				<label for="id">아이디</label> <input id="id" type="text" name="id"
+					value="${user.id }">
 			</div>
 			<div class="form-row">
-			<label for="pw">패스워드</label> <input
-				id="pw" type="password" name="password" value="${user.password }">
+				<label for="pw">패스워드</label> <input id="pw" type="password"
+					name="password" value="${user.password }">
 			</div>
 			<div class="form-row">
-			<label
-				for="pw-confirm">패스워드확인</label><input id="pw-confirm"
-				type="password" value="${user.password}">
+				<label for="pw-confirm">패스워드확인</label><input id="pw-confirm"
+					type="password" value="${user.password}"> <span
+					id="message" class="message"></span>
 			</div>
-			<span id="message"></span>
+
 			<div class="form-row">
-			<label for="nick-name">별명</label><input type="text" name="nick-name" value="${user.nickName }"><br>
-			</div>
-			<div class="form-row">
-			<label for="email">이메일</label><input type="email" name="email" value="${user.email }"><br>
+				<label for="nick-name">별명</label><input id="nick-name" type="text" name="nick-name"
+					value="${user.nickName }"><br>
 			</div>
 			<div class="form-row">
-			<input type="submit" value="가입">
+				<label for="email">이메일</label><input id="email" type="email" name="email"
+					value="${user.email }"><br>
+			</div>
+			<div class="form-row">
+				<input type="submit" value="가입">
 			</div>
 		</form>
 	</div>
-	${error }
+	<span class="message">${error }</span>
 
 </body>
 </html>
