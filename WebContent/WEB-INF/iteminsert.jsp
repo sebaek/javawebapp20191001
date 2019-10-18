@@ -16,12 +16,6 @@
 	<div class="form-container">
 		<h1>게시물 등록</h1>
 
-<style>
-.form-textarea textarea {
-	width: 100%;
-	height: 100px;
-}
-</style>
 		<form action="<c:url value="/item/insert" />" method="post"
 			enctype="multipart/form-data">
 			<div class="form-row">
