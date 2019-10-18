@@ -128,6 +128,9 @@
 .comment-container > div {
 	flex-basis: 20%;
 }
+.comment-body-container {
+	flex: 1;
+}
 .comment-insert-container {
 	width: 75%;
 	margin: auto;
@@ -152,4 +155,37 @@
 .delete-btn {
 	text-decoration: none;
 	color: black;
+}
+
+.form-container {
+	width: 70%;
+	margin: auto;
+}
+
+.form-row {
+	display: flex;
+	justify-content: space-around;
+	margin: 3px;
+	height: 30px;
+	display: flex;
+	margin-bottom: 10px;
+}
+
+.form-row>* {
+	flex-basis: 0;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+.form-row label {
+	flex: 2.5;
+	text-align: right;
+}
+
+.form-row  input {
+	flex: 8;
+}
+
+h1 {
+	text-align: center;
 }
