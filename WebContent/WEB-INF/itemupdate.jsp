@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="my" tagdir="/WEB-INF/tags" %> 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="<c:url value='/mystyle.css' />" >
 <title>게시물 수정</title>
 <style>
 textarea {
@@ -35,6 +37,8 @@ $(document).ready(function() {
 </script>
 </head>
 <body>
+<my:navbar />
+
 <c:url value="/item/update" var="updateUrl" >
 </c:url>
 <c:if test="${not empty item.file }">

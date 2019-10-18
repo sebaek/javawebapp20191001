@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="my" tagdir="/WEB-INF/tags" %> 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js" ></script>
+<link rel="stylesheet" href="<c:url value='/mystyle.css' />" >
 <title>회원 가입</title>
 
 <script>
@@ -25,6 +27,7 @@ $(document).ready(function() {
 </script>
 </head>
 <body>
+<my:navbar />
 <h1>회원 가입</h1>
 <form action="<c:url value="/signup" />" method="post">
 id : <input type="text" name="id" value="${user.id }"><br>
