@@ -6,6 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
 <link rel="stylesheet" href="<c:url value='/mystyle.css' />">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -18,21 +20,25 @@
 			var form = $('<form />').attr({
 				'action' : $(this).attr('update-url'),
 				'method' : 'post'
+			}).css({
+				'display' : 'flex',
+				'flex-grow' : '1'
 			});
 
 			var textArea = $('<textArea />').attr({
 				'name' : 'comment'
-			}).text(commentContainer.find('.comment-body').text());
-
-			var submit = $('<input />').attr({
-				'type' : 'submit',
-				'value' : '수정'
+			}).text(commentContainer.find('.comment-body').text()).css({
+				'flex-grow' : '1'
 			});
 
-			var cancelBtn = $('<button />').text('취소').click(function() {
+			var submit = $('<button />').attr({
+				'type' : 'submit'
+			}).html('<i class="material-icons">send</i>').addClass('plain-text-btn');
+
+			var cancelBtn = $('<button />').html('<i class="material-icons">remove_circle_outline</i>').click(function() {
 				commentContainer.html(commentContent);
 				commentContainer.find('.update-btn').click(update);
-			});
+			}).addClass('plain-text-btn');
 
 			form.append(textArea).append(submit);
 
@@ -45,64 +51,23 @@
 </script>
 
 
-<title>Insert title here</title>
-<style>
-img {
-	width: 200px;
-	height: 150px;
-}
-</style>
+<title>게시글 보기</title>
+
 </head>
 <body>
 	<my:navbar />
-
-<style>
-.item-container {
-	width: 90%;
-	margin: auto;
-}
-.item-top {
-	display: flex;
-	justify-content: center;
-	/* padding-left : 10px;
-	padding-right: 10px; */
-	margin-bottom: 20px;
-}
-.item-title {
-	flex-basis: 50%;
-}
-.item-userId {
-	flex-basis: 20%;
-	font-size: 14px;
-}
-.item-timeAgo {
-	flex-basis: 20%;
-	font-size: 14px;
-}
-.item-image {
-	text-align: center;
-}
-.item-image img {
-	display: inline-block;
-	max-width: 50%;
-	height: auto;
-}
-.item-body {
-	padding-left: 30px;
-	padding-right: 30px;
-}
-
-</style>
 	<div class="item-container">
 		<div class="item-top">
 			<div class="item-title">제목 : ${item.title }</div>
 			<div class="item-userId">id : ${item.userId }</div>
-			<div class="item-timeAgo">작성 : ${item.timeAgo }</div>
+			<div class="item-timeAgo">
+				<small>${item.timeAgo }에 게시</small>
+			</div>
 		</div>
 		<c:if test="${not empty item.file }">
-		<div class="item-image">
-			<img src="<c:url value="/image/${item.id }/${item.file }" />">
-		</div>
+			<div class="item-image">
+				<img src="<c:url value="/image/${item.id }/${item.file }" />">
+			</div>
 		</c:if>
 		<div class="item-body">
 			<pre>${item.body }</pre>
@@ -119,30 +84,49 @@ img {
 
 	</div>
 
-
+<div class="comment-insert-container">
 	<c:if test="${not empty user }">
 		<form action="<c:url value="/comment/insert" />" method="post">
 			<textarea name="comment">${comment.comment }</textarea>
 			<input type="submit" value="댓글">
 		</form>
 	</c:if>
+</div>
 
-	<c:forEach items="${comments }" var="comment">
-		<div class="comment-container">
-			<pre class="comment-body">${comment.comment }</pre>
-			<span>${comment.userId }</span><br> <span>${comment.timeAgo }</span>
-			<c:if test="${comment.userId eq user.id }">
-				<c:url value="/comment/delete" var="commentDeleteUrl">
-					<c:param name="id" value="${comment.id }" />
-				</c:url>
-				<c:url value="/comment/update" var="commentUpdateUrl">
-					<c:param name="id" value="${comment.id }" />
-				</c:url>
-				<button class="update-btn" update-url="${commentUpdateUrl }">수정</button>
-				<a href="${commentDeleteUrl }">삭제</a>
-			</c:if>
-		</div>
-	</c:forEach>
+	<div class="comment-list-container">
+		<c:forEach items="${comments }" var="comment">
+			<div class="comment-container">
+				<div class="comment-body-container">
+					<pre class="comment-body">${comment.comment }</pre>
+				</div>
+				<div class="comment-update-container">
+
+					
+				</div>
+				<div class="comment-userId-container">
+					<span>${comment.userId }</span>
+				</div>
+				<div class="comment-timeAgo-container">
+					<span>${comment.timeAgo }</span>
+				</div>
+				<c:if test="${comment.userId eq user.id }">
+						<c:url value="/comment/delete" var="commentDeleteUrl">
+							<c:param name="id" value="${comment.id }" />
+						</c:url>
+						<c:url value="/comment/update" var="commentUpdateUrl">
+							<c:param name="id" value="${comment.id }" />
+						</c:url>
+						<button class="update-btn plain-text-btn" update-url="${commentUpdateUrl }"><i class="material-icons">
+create
+</i></button>
+						<a class="delete-btn" href="${commentDeleteUrl }"><i class="material-icons">
+delete_forever
+</i></a>
+					</c:if>
+
+			</div>
+		</c:forEach>
+	</div>
 
 
 
