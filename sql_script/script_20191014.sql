@@ -1,6 +1,7 @@
 insert into comments (comment, item_id, user_id)
 values ('새로운 댓글 aljf a;lkjdf lkj alkdfj lakjd falkj a', 57, 'busan');
-select * from comments;
+select * from comments order by id desc;
+delete from comments where id = 13;
 
 update items set body='[Verse 1: V]
 첫눈에 널 알아보게 됐어
