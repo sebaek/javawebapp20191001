@@ -12,6 +12,27 @@
 
 <script>
 	$(document).ready(function() {
+		$("#signup-submit").click(function() {
+			var origin = $("#pw").val();
+			var confirm = $("#pw-confirm").val();
+			if (orgin != confirm) {
+				alert("패스워드가 일치하지 않습니다.");
+				return false;
+			}
+			var id = $("#id").val();
+			var nickName = $("#nick-name").val();
+			console.log(id);
+			console.log(nickName);
+			return false;
+			if (id.includes(" ") || nickName.includes(" ")) {
+				alert("아이디나 별명에 빈칸을 포함할 수 없습니다.");
+				return false;
+			}
+			
+			
+		});
+		
+		
 		$("#pw-confirm").keyup(function() {
 			var origin = $("#pw").val();
 			var confirm = $(this).val();
@@ -32,21 +53,25 @@
 		<h1>회원 가입</h1>
 		<form action="<c:url value="/signup" />" method="post">
 			<div class="form-row">
-				<label for="id">아이디</label> <input id="id" type="text" name="id"
+				<label for="id">아이디</label> 
+				<input id="id" type="text" name="id"
 					value="${user.id }">
 			</div>
 			<div class="form-row">
-				<label for="pw">패스워드</label> <input id="pw" type="password"
+				<label for="pw">패스워드</label> 
+				<input id="pw" type="password"
 					name="password" value="${user.password }">
 			</div>
 			<div class="form-row">
-				<label for="pw-confirm">패스워드확인</label><input id="pw-confirm"
+				<label for="pw-confirm">패스워드확인</label>
+				<input id="pw-confirm"
 					type="password" value="${user.password}"> <span
 					id="message" class="message"></span>
 			</div>
 
 			<div class="form-row">
-				<label for="nick-name">별명</label><input id="nick-name" type="text" name="nick-name"
+				<label for="nick-name">별명</label>
+				<input id="nick-name" type="text" name="nick-name"
 					value="${user.nickName }"><br>
 			</div>
 			<div class="form-row">
@@ -54,7 +79,7 @@
 					value="${user.email }"><br>
 			</div>
 			<div class="form-row">
-				<input type="submit" value="가입">
+				<input id="signup-submit" type="submit" value="가입">
 			</div>
 		</form>
 	</div>
