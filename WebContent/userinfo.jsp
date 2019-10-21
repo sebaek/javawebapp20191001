@@ -13,6 +13,11 @@
 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
 <script>
 	$(document).ready(function() {
+		$("#delete-user-link").click(function() {
+			return confirm("탈퇴하시겠습니까?");
+		});
+		
+		
 		$("#pw-confirm").keyup(function() {
 			var origin = $("#pw").val();
 			var confirm = $(this).val();
@@ -51,7 +56,7 @@
 				<input type="submit" value="정보 수정">
 			</div>
 		</form>
-		<a href="<c:url value="/delete" />">회원 탈퇴</a>	
+		<a id="delete-user-link" href="<c:url value="/delete" />">회원 탈퇴</a>	
 		<span class="message"> ${error }</span>
 				
 	</div>
