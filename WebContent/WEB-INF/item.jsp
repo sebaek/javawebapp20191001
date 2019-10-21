@@ -83,7 +83,7 @@
 			</div>
 		</c:if>
 		<div class="item-body">
-			<pre>${item.body }</pre>
+			<pre><c:out value="${item.body }" /></pre>
 			<div>
 				<c:if test="${item.userId eq user.id }">
 					<c:url value="/item/update" var="updateUrl">
