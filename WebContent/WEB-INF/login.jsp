@@ -22,10 +22,10 @@
 <h1>로그인</h1>
 		<form action="<%=contextPath%>/login" method="post">
 			<div class="form-row">
-				<label for="id">아이디</label> <input type="text" name="id">
+				<label for="id">아이디</label> <input id="id" type="text" name="id">
 			</div>
 			<div class="form-row">
-				<label for="password">패스워드</label> <input type="password"
+				<label for="password">패스워드</label> <input id="password" type="password"
 					name="password">
 			</div>
 			<div class="form-row">

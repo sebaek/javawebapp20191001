@@ -1,3 +1,6 @@
+@charset "UTF-8";
+
+/*가나다 */
 .navbar {
 	display: flex;
 	justify-content: space-between;
