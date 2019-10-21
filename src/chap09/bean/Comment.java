@@ -11,6 +11,15 @@ public class Comment {
 	private int itemId;
 	private String userId;
 	private Date created;
+	private String nickName;
+	
+	public String getNickName() {
+		return nickName;
+	}
+	
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
+	}
 	
 	public int getId() {
 		return id;

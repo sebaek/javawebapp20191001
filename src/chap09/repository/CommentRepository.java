@@ -41,10 +41,18 @@ public class CommentRepository {
 
 	public List<Comment> list(int itemId) {
 		List<Comment> list = new ArrayList<>();
-		String sql = "SELECT id, comment, item_id, user_id, created "
-				+ "FROM comments "
-				+ "WHERE item_id=? "
-				+ "ORDER BY id DESC";
+		
+		String sql = " SELECT c.id, c.comment, c.item_id, c.user_id, c.created, u.nickName "
+				+ " FROM comments c "
+				+ " JOIN users u "
+				+ " ON c.user_id=u.id "
+				+ " WHERE c.item_id=? "
+				+ " ORDER BY id DESC";
+		
+//		String sql = "SELECT id, comment, item_id, user_id, created "
+//				+ "FROM comments "
+//				+ "WHERE item_id=? "
+//				+ "ORDER BY id DESC";
 		ResultSet rs = null;
 		
 		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
@@ -58,6 +66,7 @@ public class CommentRepository {
 				c.setItemId(rs.getInt(3));
 				c.setUserId(rs.getString(4));
 				c.setCreated(rs.getTimestamp(5));
+				c.setNickName(rs.getString(6));
 				
 				list.add(c);
 			}

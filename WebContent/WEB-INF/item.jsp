@@ -72,7 +72,7 @@
 	<div class="item-container">
 		<div class="item-top">
 			<div class="item-title">제목 : ${item.title }</div>
-			<div class="item-userId">id : ${item.userId }</div>
+			<div class="item-userId">별명 : ${item.nickName }</div>
 			<div class="item-timeAgo">
 				<small>${item.timeAgo }에 게시</small>
 			</div>
@@ -117,7 +117,7 @@
 				</div>
 				<div class="comment-update-container"></div>
 				<div class="comment-userId-container">
-					<span>${comment.userId }</span>
+					<span>${comment.nickName }</span>
 				</div>
 				<div class="comment-timeAgo-container">
 					<span>${comment.timeAgo }</span>
