@@ -13,23 +13,19 @@
 <script>
 	$(document).ready(function() {
 		$("#signup-submit").click(function() {
+			var id = $("#id").val();
+			var nickName = $("#nick-name").val();
 			var origin = $("#pw").val();
 			var confirm = $("#pw-confirm").val();
-			if (orgin != confirm) {
+			if (origin != confirm) {
 				alert("패스워드가 일치하지 않습니다.");
 				return false;
 			}
-			var id = $("#id").val();
-			var nickName = $("#nick-name").val();
-			console.log(id);
-			console.log(nickName);
-			return false;
+			
 			if (id.includes(" ") || nickName.includes(" ")) {
 				alert("아이디나 별명에 빈칸을 포함할 수 없습니다.");
 				return false;
 			}
-			
-			
 		});
 		
 		
