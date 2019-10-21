@@ -9,6 +9,6 @@
 <div class="itemRow">
 	<div class="itemId">${item.id }</div>
 	<a class="itemLink" href="${itemUrl }">${item.title }</a>
-	<div class="itemUserId">${item.userId }</div>
+	<div class="itemUserId">${item.nickName }</div>
 	<div class="itemTimeAgo">${item.timeAgo }</div>
 </div>

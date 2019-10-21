@@ -14,6 +14,15 @@ public class Item {
 	private String userId;
 	private Date created;
 	private String file;
+	private String nickName;
+	
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
+	}
+	
+	public String getNickName() {
+		return nickName;
+	}
 	
 	public String getFile() {
 		return file;

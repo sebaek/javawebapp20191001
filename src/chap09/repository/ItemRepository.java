@@ -164,9 +164,17 @@ public class ItemRepository {
 
 	public List<Item> list(int page) {
 		int itemPerPage = 5;
-		String sql = "SELECT id, title, body, user_id, created " 
-				+ "FROM items ORDER BY id DESC "
+		String sql = "SELECT i.id, i.title, i.body, i.user_id, i.created, u.nickName " 
+				+ "FROM items i JOIN users u "
+				+ "ON i.user_id = u.id "
+				+ "ORDER BY id DESC "
 				+ "LIMIT ?, ?";
+		
+//		String sql = "SELECT id, title, body, user_id, created " 
+//				+ "FROM items ORDER BY id DESC "
+//				+ "LIMIT ?, ?";
+		
+		
 		List<Item> list = new ArrayList<>();
 		ResultSet rs = null;
 
@@ -183,6 +191,7 @@ public class ItemRepository {
 				item.setBody(rs.getString(3));
 				item.setUserId(rs.getString(4));
 				item.setCreated(rs.getTimestamp(5));
+				item.setNickName(rs.getString(6));
 
 				list.add(item);
 			}
