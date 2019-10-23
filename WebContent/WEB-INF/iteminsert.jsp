@@ -20,6 +20,7 @@ $(document).ready(function() {
 			return false;
 		}
 		
+		window.history.replaceState(null, null, "<c:url value="/" />");
 	});
 });
 

@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
@@ -41,10 +42,19 @@ public class AppListener implements ServletContextListener {
 	 * @see ServletContextListener#contextInitialized(ServletContextEvent)
 	 */
 	public void contextInitialized(ServletContextEvent sce) {
+		ServletContext application = sce.getServletContext();
+		String jdbcDriverString = application.getInitParameter("jdbcDriver");
+		String dburl = application.getInitParameter("dburl");
+		String dbuser = application.getInitParameter("dbuser");
+		String dbpw = application.getInitParameter("dbpw");
+		
+		
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			String url = "jdbc:mysql://localhost/w3schools?"
-					+ "user=root&password=admin&serverTimezone=UTC";
+			Class.forName(jdbcDriverString);
+//			String url = "jdbc:mysql://localhost/w3schools?"
+//					+ "user=root&password=admin&serverTimezone=UTC";
+			
+			String url = dburl + "?user=" + dbuser + "&password=" + dbpw + "&characterEncoding=utf8&serverTimezone=UTC";
 			Connection con = DriverManager.getConnection(url);
 			
 			sce.getServletContext()

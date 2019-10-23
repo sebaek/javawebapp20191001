@@ -21,7 +21,7 @@ public class UserRepository {
 	public User getUser(String id, String pw) {
 		
 		String sql = "SELECT id, password, nickname, email "
-				+ "FROM USERS "
+				+ "FROM users "
 				+ "WHERE id=? "
 				+ "AND password=?";
 		ResultSet rs = null;

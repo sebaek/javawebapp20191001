@@ -13,6 +13,26 @@
     <url-pattern>*.js</url-pattern>
   </servlet-mapping>
 
+  <context-param>
+  <param-name>jdbcDriver</param-name>
+  <param-value>com.mysql.cj.jdbc.Driver</param-value>
+  </context-param>
+  
+  <context-param>
+  <param-name>dburl</param-name>
+  <param-value>jdbc:mysql://localhost/causer</param-value>
+  </context-param>
+  
+  <context-param>
+  <param-name>dbuser</param-name>
+  <param-value>wsluser</param-value>
+  </context-param>
+  
+  <context-param>
+  <param-name>dbpw</param-name>
+  <param-value>admin</param-value>
+  </context-param>
+
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
