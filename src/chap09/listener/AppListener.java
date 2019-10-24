@@ -54,7 +54,7 @@ public class AppListener implements ServletContextListener {
 //			String url = "jdbc:mysql://localhost/w3schools?"
 //					+ "user=root&password=admin&serverTimezone=UTC";
 			
-			String url = dburl + "?user=" + dbuser + "&password=" + dbpw + "&characterEncoding=utf8&serverTimezone=UTC";
+			String url = dburl + "?user=" + dbuser + "&password=" + dbpw + "&serverTimezone=UTC";
 			Connection con = DriverManager.getConnection(url);
 			
 			sce.getServletContext()

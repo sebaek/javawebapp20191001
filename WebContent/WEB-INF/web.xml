@@ -20,12 +20,12 @@
   
   <context-param>
   <param-name>dburl</param-name>
-  <param-value>jdbc:mysql://localhost/causer</param-value>
+  <param-value>jdbc:mysql://211.183.9.38/w3schools</param-value>
   </context-param>
   
   <context-param>
   <param-name>dbuser</param-name>
-  <param-value>wsluser</param-value>
+  <param-value>root</param-value>
   </context-param>
   
   <context-param>
